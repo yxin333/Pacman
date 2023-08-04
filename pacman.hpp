@@ -8,7 +8,7 @@ enum DIRECTION {
     Upward, Downward, Left, Right
 };
 
-DIRECTION state;
+extern DIRECTION state;
 
 struct POSITION{
     short x = 1;
