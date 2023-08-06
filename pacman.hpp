@@ -11,10 +11,10 @@ enum DIRECTION {
 DIRECTION state;
 
 struct POSITION{
-    short x = 1;
-    short y = 1;
-    short ex = 19;
-    short ey = 9;
+    short x;
+    short y;
+    short ex;
+    short ey;
 }player, enemy;
 
 struct PACMAN{

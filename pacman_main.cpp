@@ -15,7 +15,7 @@ char map[20][40] = {
     "|                                     |",
     "|                                     |",
     "|                                     |",
-    "|                                     |",
+    "|                 X                   |",
     "|                                     |",
     "|                                     |",
     "|                                     |",
@@ -38,6 +38,10 @@ void ShowMap()
     for (int row = 0; row < 20; row++)  
     {  
         for(int column = 0; column < 40; column++ ) {
+            if(map[row][column] == 'X') {
+                player.x = column;
+                player.y = row;
+            }
             cout << map[row][column];
         }
         cout << endl;
@@ -130,8 +134,6 @@ void check_direction() {
 
 int main() {
     ShowMap();
-    CursorPosition(20, 10);
-    cout << "X";
     state = DIRECTION::Still;
     pacman.status = GAMESTATE::running;
     while(pacman.status == GAMESTATE::running) {
