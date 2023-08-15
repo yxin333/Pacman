@@ -7,15 +7,15 @@ using namespace std;
 char map[20][40] = {
     "+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$+",
     "|                                     |",
-    "|                                     |",
-    "|                                     |",
-    "|    $                                |",
-    "|     $                               |",
-    "|      $                              |",
-    "|                                     |",
-    "|                                     |",
-    "|                                     |",
-    "|                 X                   |",
+    "|   $$$$$$$                           |",
+    "|   $     $                           |",
+    "|    $    $                           |",
+    "|     $   $                           |",
+    "|      $  $                           |",
+    "|       $ $                           |",
+    "|        $$        X                  |",
+    "|         $     $     $               |",
+    "|               $$$$$$$               |",
     "|                                     |",
     "|                                     |",
     "|                                     |",
@@ -26,6 +26,7 @@ char map[20][40] = {
     "|                                     |",
     "+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$+"};
 
+// Move the Cursor to the given position
 void CursorPosition(short x, short y) {
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);  
     COORD position = {(short)x, (short)y};  
@@ -37,7 +38,9 @@ void ShowMap()
 {  
     for (int row = 0; row < 20; row++)  
     {  
+        // print out the whole map
         for(int column = 0; column < 40; column++ ) {
+            // find where the initial player position
             if(map[row][column] == 'X') {
                 player.x = column;
                 player.y = row;
@@ -52,6 +55,7 @@ bool check_obstacles(short x, short y) {
     return map[y][x] == '$' || map[y][x] == '|';
 }
 
+// From the given direction state, change the player position according to the direction state
 bool next_position() {
     switch(state) {
         case Upward:
@@ -116,7 +120,10 @@ void draw_player_position() {
     }
     
 }
-
+/*
+    Check which key is pressed
+    Set the player direction state 
+*/ 
 void check_direction() {
     if(GetAsyncKeyState(VK_UP) & 0x1) {
         state = DIRECTION::Upward;
@@ -134,13 +141,15 @@ void check_direction() {
 
 int main() {
     ShowMap();
+    enemy.x = 19;
+    enemy.y = 9;
     state = DIRECTION::Still;
     pacman.status = GAMESTATE::running;
     while(pacman.status == GAMESTATE::running) {
         check_direction();
         if(next_position()) {
             draw_player_position();          
-            Sleep(100);
         }
+        Sleep(100);
     }      
 }
