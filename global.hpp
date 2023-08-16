@@ -11,7 +11,7 @@ enum GAMESTATE {
 enum DIRECTION {
     Still = 0,
     Upward, Downward, Left, Right
-}state, enemy_state;
+}state, enemy_state, enemy_previous_state;
 
 /*
     To access the member of struct
@@ -29,4 +29,5 @@ struct PACMAN{
     int score, max_score;
 }pacman;
 
-int distance_x, distance_y;
+float distance_a, distance_b, distance_c, distance_d;
+float result_x, result_y;
