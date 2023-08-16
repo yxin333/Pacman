@@ -1,24 +1,32 @@
+/*
+    '$' && '|' are wall
+    'X' is player
+*/
 #pragma once
-#include <iostream>
-#include <windows.h>
-#include "pacman.hpp"
-#include "map.hpp"
+enum GAMESTATE {
+    running = 0,
+    win, lose
+};
 
-using namespace std;
+enum DIRECTION {
+    Still = 0,
+    Upward, Downward, Left, Right
+}state, enemy_state;
 
-// Move the Cursor to the given position
-void CursorPosition(short x, short y) {
-    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);  
-    COORD position = {(short)x, (short)y};  
-  
-    SetConsoleCursorPosition(hStdout, position); 
-} 
+/*
+    To access the member of struct
+    Use "."
+    Example: player.x
+*/
+struct POSITION{
+    short x;
+    short y;
+    short old_x;
+    short old_y;
+}player, enemy;
+struct PACMAN{
+    GAMESTATE status;
+    int score, max_score;
+}pacman;
 
-void delete_old_position(short x, short y) {
-        CursorPosition(x, y);
-        cout << " ";
-}
-
-bool check_obstacles(short x, short y) {
-    return map[y][x] == '$' || map[y][x] == '|';
-}
+int distance_x, distance_y;

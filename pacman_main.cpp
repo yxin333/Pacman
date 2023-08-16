@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
-#include "pacman.hpp"
 #include "global.hpp"
+#include "game.hpp"
 #include "player.hpp"
 #include "map.hpp"
 

@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
 #include <windows.h>
-#include "pacman.hpp"
 #include "global.hpp"
+#include "game.hpp"
 
 using namespace std;
 
