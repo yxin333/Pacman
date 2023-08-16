@@ -1,3 +1,8 @@
+/*
+    '$' && '|' are wall
+    'X' is player
+*/
+#pragma once
 enum GAMESTATE {
     running = 0,
     win, lose
